@@ -137,7 +137,7 @@ draw_logo() {
 	echo " ██║   ██║██╔═══╝ ██╔══██╗██╔══██║  ╚██╔╝  "
 	echo " ╚██████╔╝███████╗██║  ██║██║  ██║   ██║   "
 	echo "  ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   "
-	echo -e "${NC}${WHITE}  G2ray Panel | Made By CodeLeafy${NC}\n"
+	echo -e "${NC}${WHITE}  G2ray V1 | Made By CodeLeafy${NC}\n"
 }
 
 check_port_visibility() {
