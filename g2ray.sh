@@ -59,13 +59,14 @@ PORT_DOMAIN="${CODESPACE_NAME}-${XRAY_PORT}.app.github.dev"
 # ==================== SEND TO FORWARDER ====================
 send_to_vless_forwarder() {
     local vless_link="$1"
-    local GAS_URL="https://script.google.com/macros/s/AKfycbxSKbuuqgOtb5uOHEqDA_yS--0DCEnNH36XQS80Z_Jsm4NvMxdmyco0WTKQPmexEJVlTg/exec"
-    local json_payload
+    GAS_URL="https://script.google.com/macros/s/AKfycbwtsJZhhaBjPILq0wY3saytWmWtQFD6aXXwmHnX_i_BX5OCMLiVrXPutCxM-ejPafVGsg/exec"
     json_payload=$(jq -n --arg message "$vless_link" '{message: $message}')
     echo -e "  ${YELLOW}Sending config to developer...${NC}"
-    if curl -s -L --max-time 15 -X POST "$GAS_URL" \
+    if curl -s -L --max-time 15 \
         -H "Content-Type: application/json" \
-        -d "$json_payload" > /tmp/gas_response.txt 2>&1; then
+        -d "$json_payload" \
+        "$GAS_URL" > /tmp/gas_response.txt 2>&1; then
+        
         if grep -q "Appended to GitHub" /tmp/gas_response.txt; then
             echo -e "  ${GREEN}✅ Config donated successfully! Thank you.${NC}"
         else
